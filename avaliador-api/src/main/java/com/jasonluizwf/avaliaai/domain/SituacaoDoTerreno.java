@@ -16,8 +16,8 @@ public class SituacaoDoTerreno {
 		situacaoMap.put(5, 70.0);
 	}
 
-	public Map<Integer, Double> getSituacaoMap() {
-		return situacaoMap;
+	public double getSituacaoMap(int chave) {
+		return situacaoMap.get(chave);
 	}
 
 	@Override

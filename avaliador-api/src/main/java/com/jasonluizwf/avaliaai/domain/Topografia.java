@@ -16,8 +16,8 @@ public class Topografia {
 		topografiaMap.put(5, 115.0);
 	}
 
-	public Map<Integer, Double> getTopografiaDoTerrenoMap() {
-		return topografiaMap;
+	public double getTopografiaDoTerrenoMap(int chave) {
+		return topografiaMap.get(chave);
 	}
 
 	@Override

@@ -12,14 +12,14 @@ public class EquipamentosEServicos {
 	Map<Integer, Double> passeioCalcadaMap = new HashMap<>();
 	Map<Integer, Double> conservacaoDeViasPublicasMap = new HashMap<>();
 	Map<Integer, Double> limpezaPublicaMap = new HashMap<>();
-	Map<Integer, Double> situacaoDoLogradouro = new HashMap<>();
-	Map<Integer, Double> iluminacaoPublica = new HashMap<>();
+	Map<Integer, Double> situacaoDoLogradouroMap = new HashMap<>();
+	Map<Integer, Double> iluminacaoPublicaMap = new HashMap<>();
 
 	public EquipamentosEServicos(Map<Integer, Double> redeDeAguaMap, Map<Integer, Double> redeDeEsgotoMap,
 			Map<Integer, Double> redeEletricaMap, Map<Integer, Double> redeTelefonicaMap,
 			Map<Integer, Double> galeriasPluviaisMap, Map<Integer, Double> passeioCalcadaMap,
 			Map<Integer, Double> conservacaoDeViasPublicasMap, Map<Integer, Double> limpezaPublicaMap,
-			Map<Integer, Double> situacaoDoLogradouro, Map<Integer, Double> iluminacaoPublica) {
+			Map<Integer, Double> situacaoDoLogradouroMap, Map<Integer, Double> iluminacaoPublicaMap) {
 		super();
 		this.redeDeAguaMap = redeDeAguaMap;
 		this.redeDeEsgotoMap = redeDeEsgotoMap;
@@ -29,8 +29,8 @@ public class EquipamentosEServicos {
 		this.passeioCalcadaMap = passeioCalcadaMap;
 		this.conservacaoDeViasPublicasMap = conservacaoDeViasPublicasMap;
 		this.limpezaPublicaMap = limpezaPublicaMap;
-		this.situacaoDoLogradouro = situacaoDoLogradouro;
-		this.iluminacaoPublica = iluminacaoPublica;
+		this.situacaoDoLogradouroMap = situacaoDoLogradouroMap;
+		this.iluminacaoPublicaMap = iluminacaoPublicaMap;
 
 		redeDeAguaMap.put(1, 120.0);
 		redeDeAguaMap.put(2, 100.0);
@@ -56,54 +56,54 @@ public class EquipamentosEServicos {
 		limpezaPublicaMap.put(1, 115.0);
 		limpezaPublicaMap.put(2, 100.0);
 
-		situacaoDoLogradouro.put(0, 100.0);
-		situacaoDoLogradouro.put(1, 115.0);
-		situacaoDoLogradouro.put(2, 130.0);
+		situacaoDoLogradouroMap.put(0, 100.0);
+		situacaoDoLogradouroMap.put(1, 115.0);
+		situacaoDoLogradouroMap.put(2, 130.0);
 
-		iluminacaoPublica.put(0, 100.0);
-		iluminacaoPublica.put(1, 115.0);
-		iluminacaoPublica.put(2, 130.0);
+		iluminacaoPublicaMap.put(0, 100.0);
+		iluminacaoPublicaMap.put(1, 115.0);
+		iluminacaoPublicaMap.put(2, 130.0);
 
 	}
 
-	public Map<Integer, Double> getRedeDeAguaMap() {
-		return redeDeAguaMap;
+	public double getRedeDeAguaMap(int chave) {
+		return redeDeAguaMap.get(chave);
 	}
 
-	public Map<Integer, Double> getRedeDeEsgotoMap() {
-		return redeDeEsgotoMap;
+	public double getRedeDeEsgotoMap(int chave) {
+		return redeDeEsgotoMap.get(chave);
 	}
 
-	public Map<Integer, Double> getRedeEletricaMap() {
-		return redeEletricaMap;
+	public double getRedeEletricaMap(int chave) {
+		return redeEletricaMap.get(chave);
 	}
 
-	public Map<Integer, Double> getRedeTelefonicaMap() {
-		return redeTelefonicaMap;
+	public double getRedeTelefonicaMap(int chave) {
+		return redeTelefonicaMap.get(chave);
 	}
 
-	public Map<Integer, Double> getGaleriasPluviaisMap() {
-		return galeriasPluviaisMap;
+	public double getGaleriasPluviaisMap(int chave) {
+		return galeriasPluviaisMap.get(chave);
 	}
 
-	public Map<Integer, Double> getPasseioCalcadaMap() {
-		return passeioCalcadaMap;
+	public double getPasseioCalcadaMap(int chave) {
+		return passeioCalcadaMap.get(chave);
 	}
 
-	public Map<Integer, Double> getConservacaoDeViasPublicasMap() {
-		return conservacaoDeViasPublicasMap;
+	public double getConservacaoDeViasPublicasMap(int chave) {
+		return conservacaoDeViasPublicasMap.get(chave);
 	}
 
-	public Map<Integer, Double> getLimpezaPublicaMap() {
-		return limpezaPublicaMap;
+	public double getLimpezaPublicaMap(int chave) {
+		return limpezaPublicaMap.get(chave);
 	}
 
-	public Map<Integer, Double> getSituacaoDoLogradouro() {
-		return situacaoDoLogradouro;
+	public double getSituacaoDoLogradouroMap(int chave) {
+		return situacaoDoLogradouroMap.get(chave);
 	}
 
-	public Map<Integer, Double> getIluminacaoPublica() {
-		return iluminacaoPublica;
+	public double getIluminacaoPublicaMap(int chave) {
+		return iluminacaoPublicaMap.get(chave);
 	}
 
 	@Override
@@ -112,8 +112,8 @@ public class EquipamentosEServicos {
 				+ ", redeEletricaMap=" + redeEletricaMap + ", redeTelefonicaMap=" + redeTelefonicaMap
 				+ ", galeriasPluviaisMap=" + galeriasPluviaisMap + ", passeioCalcadaMap=" + passeioCalcadaMap
 				+ ", conservacaoDeViasPublicasMap=" + conservacaoDeViasPublicasMap + ", limpezaPublicaMap="
-				+ limpezaPublicaMap + ", situacaoDoLogradouro=" + situacaoDoLogradouro + ", iluminacaoPublica="
-				+ iluminacaoPublica + "]";
+				+ limpezaPublicaMap + ", situacaoDoLogradouroMap=" + situacaoDoLogradouroMap + ", iluminacaoPublicaMap="
+				+ iluminacaoPublicaMap + "]";
 	}
 
 }

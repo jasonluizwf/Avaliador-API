@@ -16,8 +16,8 @@ public class ElementoDeProtecao {
 		elementoDeProtecaoMap.put(5, 100.0);
 	}
 
-	public Map<Integer, Double> getElementoDeProtecaoMap() {
-		return elementoDeProtecaoMap;
+	public double getElementoDeProtecaoMap(int chave) {
+		return elementoDeProtecaoMap.get(chave);
 	}
 
 	@Override

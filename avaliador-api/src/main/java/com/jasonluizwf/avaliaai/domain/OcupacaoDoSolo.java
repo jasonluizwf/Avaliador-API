@@ -17,8 +17,8 @@ public class OcupacaoDoSolo {
 		ocupacaoDoSoloMap.put(6, 85.0);
 	}
 
-	public Map<Integer, Double> getocupacaoDoSoloMap() {
-		return ocupacaoDoSoloMap;
+	public double getocupacaoDoSoloMap(int chave) {
+		return ocupacaoDoSoloMap.get(chave);
 	}
 
 	@Override

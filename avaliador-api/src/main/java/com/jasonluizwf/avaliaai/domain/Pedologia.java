@@ -16,8 +16,8 @@ public class Pedologia {
 		pedologiaMap.put(5, 85.0);
 	}
 
-	public Map<Integer, Double> getPedologiaMap() {
-		return pedologiaMap;
+	public double getPedologiaMap(int chave) {
+		return pedologiaMap.get(chave);
 	}
 
 	@Override
