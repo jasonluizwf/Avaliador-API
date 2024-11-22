@@ -45,8 +45,10 @@ public class Terreno {
 		// pode haver problema aqui com CATT
 		double fatorCorretivoMedio = ((fc14+fc15+fc16+fc17+fc18+fc50+fc51+fc52+fc53+fc54+fc55+fc56+fc57+fc58+fc59)/15) + coeficienteDeAproveitamentoTecnicoDoTerreno;
 		
-		// calcular  VVT = area * valor por localização * FCM
 		
+		// calcular  VVT = area * valor por localização * FCM
+		// double valorVenalDoTerreno = (area *  * fatorCorretivoMedio);
+
 		return 0.0;
 	}
 

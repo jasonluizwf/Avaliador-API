@@ -4,11 +4,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ElementoDeProtecao {
-	Map<Integer, Double> elementoDeProtecaoMap = new HashMap<>();
+		
+	private Map<Integer, Double> elementoDeProtecaoMap = new HashMap<>();
 
-	public ElementoDeProtecao(Map<Integer, Double> elementoDeProtecaoMap) {
-		super();
-		this.elementoDeProtecaoMap = elementoDeProtecaoMap;
+	public ElementoDeProtecao() {
 		elementoDeProtecaoMap.put(1, 140.0);
 		elementoDeProtecaoMap.put(2, 130.0);
 		elementoDeProtecaoMap.put(3, 120.0);
