@@ -1,5 +1,7 @@
 package com.jasonluizwf.avaliaai.domain;
 
+import com.jasonluizwf.avaliaai.service.GerenciadorDeSetores;
+
 public class Terreno {
 
 	private double area;
@@ -12,20 +14,28 @@ public class Terreno {
 	private SituacaoDoTerreno situacao;
 	private OcupacaoDoSolo ocupacaoDoSolo;
 	private EquipamentosEServicos equipamentosEServicos;
+	private GerenciadorDeSetores gerenciadorDeSetores;
 
+	// Construtor
+	public Terreno(double area, double linhaDeDivisaFrente, double linhaDeDivisaFundo,
+			GerenciadorDeSetores gerenciadorDeSetores) {
+		this.area = area;
+		this.linhaDeDivisaFrente = linhaDeDivisaFrente;
+		this.linhaDeDivisaFundo = linhaDeDivisaFundo;
+		this.gerenciadorDeSetores = gerenciadorDeSetores;
+	}
 
-	public double getValorVenalDoTerreno(int topografiaChave, int pedologiaChave, int elementoDeProtecaoChave,
-			int situacaoChave, int ocupacaoDoSoloChave, int redeDeAguaChave, int redeDeEsgotoChave,
-			int redeEletricaChave, int redeTelefonicaChave, int galeriaPluviaisChave, int passeioCalcadaChave,
-			int conservacaoDeViasPublicasChave, int limpezaPublicaChave, int situacaoDoLogradouroChave,
-			int iluminacaoPublicaChave) {
-		
-		// FCM (fator corretivo medio)= (FC14+FC15+FC16+FC17+FC18+FC50+FC51+FC52+FC53+FC54+FC55+FC56+FC57+FC58+FC59+CATT)/15
-		// CAT =  AREA TOTAL DO TERRENO EM M2 DIVIDIDO POR METRAGEM DE LINHA DE DIVISA (FRENTE) +
-		// METRAGEM DA LINHA DE DIVISA COM O FUNDO DIVIDIDO POR 2 DIVIDIDO POR 100
-		
-		double coeficienteDeAproveitamentoTecnicoDoTerreno = (area / ((linhaDeDivisaFrente + linhaDeDivisaFundo) / 2) / 100);
-	
+	public double getValorVenalDoTerreno(String setor, String rua, String quadra, int topografiaChave,
+			int pedologiaChave, int elementoDeProtecaoChave, int situacaoChave, int ocupacaoDoSoloChave,
+			int redeDeAguaChave, int redeDeEsgotoChave, int redeEletricaChave, int redeTelefonicaChave,
+			int galeriaPluviaisChave, int passeioCalcadaChave, int conservacaoDeViasPublicasChave,
+			int limpezaPublicaChave, int situacaoDoLogradouroChave, int iluminacaoPublicaChave) {
+
+		// Cálculo do Coeficiente de Aproveitamento Técnico do Terreno
+		double coeficienteDeAproveitamentoTecnicoDoTerreno = (area / ((linhaDeDivisaFrente + linhaDeDivisaFundo) / 2)
+				/ 100);
+
+		// Fatores Corretivos
 		double fc14 = topografia.getTopografiaDoTerrenoMap(topografiaChave);
 		double fc15 = pedologia.getPedologiaMap(pedologiaChave);
 		double fc16 = elementoDeProtecao.getElementoDeProtecaoMap(elementoDeProtecaoChave);
@@ -41,15 +51,22 @@ public class Terreno {
 		double fc57 = equipamentosEServicos.getLimpezaPublicaMap(limpezaPublicaChave);
 		double fc58 = equipamentosEServicos.getSituacaoDoLogradouroMap(situacaoDoLogradouroChave);
 		double fc59 = equipamentosEServicos.getIluminacaoPublicaMap(iluminacaoPublicaChave);
-		
-		// pode haver problema aqui com CATT
-		double fatorCorretivoMedio = ((fc14+fc15+fc16+fc17+fc18+fc50+fc51+fc52+fc53+fc54+fc55+fc56+fc57+fc58+fc59)/15) + coeficienteDeAproveitamentoTecnicoDoTerreno;
-		
-		
-		// calcular  VVT = area * valor por localização * FCM
-		// double valorVenalDoTerreno = (area *  * fatorCorretivoMedio);
 
-		return 0.0;
+		// Fator Corretivo Médio (FCM)
+		double fatorCorretivoMedio = ((fc14 + fc15 + fc16 + fc17 + fc18 + fc50 + fc51 + fc52 + fc53 + fc54 + fc55 + fc56
+				+ fc57 + fc58 + fc59) / 15) + coeficienteDeAproveitamentoTecnicoDoTerreno;
+
+		// Valor por Localização
+		Double valorPorLocalizacao = gerenciadorDeSetores.obterValorPorLocalizacao(setor, rua, quadra);
+		if (valorPorLocalizacao == null) {
+			throw new IllegalArgumentException("Valor por localização não encontrado para os parâmetros fornecidos.");
+		}
+
+		// Valor Venal do Terreno (VTT)
+		double vtt = area * valorPorLocalizacao * fatorCorretivoMedio;
+		return vtt;
 	}
-
+	public double getValorDoMetroQuadradp(double area, double valorVenalDoTerreno) {
+		return area / valorVenalDoTerreno;
+	}
 }
